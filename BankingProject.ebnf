@@ -1,0 +1,23 @@
+program     ::= { command } ;
+
+command     ::= create_command
+              | deposit_command
+              | withdraw_command
+              | balance_command
+              | exit_command ;
+
+create_command   ::= "create" first_name last_name initial_balance ;
+deposit_command  ::= "deposit" account_number amount ;
+withdraw_command ::= "withdraw" account_number amount ;
+balance_command  ::= "balance" account_number ;
+exit_command     ::= "exit" ;
+
+first_name       ::= name_char { name_char } ;
+last_name        ::= name_char { name_char } ;
+name_char        ::= letter | "'" | "-" ;
+letter           ::= "A".."Z" | "a".."z" ;
+
+initial_balance  ::= digit { digit } ;
+account_number   ::= letter letter digit digit digit digit digit digit ;
+amount           ::= digit { digit } ;
+digit            ::= "0".."9" ;
